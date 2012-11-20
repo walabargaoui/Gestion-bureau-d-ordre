@@ -1,10 +1,13 @@
 package tn.isamm.Model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -27,7 +30,8 @@ public class Demandeur {
 	    private String login;
 	    @Column
 	    private String motDePasse;
-	    
+	    @OneToMany
+	     private Set<Courrier> courr ;
 	    
 	    
 		public Demandeur() {
@@ -35,9 +39,11 @@ public class Demandeur {
 			// TODO Auto-generated constructor stub
 		}
 		
+		
+
 		public Demandeur(int id_dem, String nom_dem, String prenom_dem,
 				String fonction_dem, String objet_demande, String login,
-				String motDePasse) {
+				String motDePasse, Set<Courrier> courr) {
 			super();
 			this.id_dem = id_dem;
 			this.nom_dem = nom_dem;
@@ -46,8 +52,10 @@ public class Demandeur {
 			this.objet_demande = objet_demande;
 			this.login = login;
 			this.motDePasse = motDePasse;
+			this.courr = courr;
 		}
-		
+
+
 
 		public int getId_dem() {
 			return id_dem;
@@ -91,6 +99,19 @@ public class Demandeur {
 		public void setMotDePasse(String motDePasse) {
 			this.motDePasse = motDePasse;
 		}
+		
+
+		public Set<Courrier> getCourr() {
+			return courr;
+		}
+
+
+
+		public void setCourr(Set<Courrier> courr) {
+			this.courr = courr;
+		}
+
+
 
 		@Override
 		public int hashCode() {
